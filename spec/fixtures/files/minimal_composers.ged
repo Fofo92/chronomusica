@@ -1,0 +1,31 @@
+0 HEAD
+1 SOUR Gramps
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+0 @I0001@ INDI
+1 NAME Isaac /Albéniz/
+2 GIVN Isaac
+2 SURN Albéniz
+1 NAME Isaac Manuel Francisco /Albéniz y Pascual/
+2 TYPE aka
+2 GIVN Isaac Manuel Francisco
+2 SURN Albéniz y Pascual
+1 BIRT
+2 DATE 29 MAY 1860
+2 PLAC Camprodon, Gérone, Espagne
+1 DEAT
+2 DATE 18 MAY 1909
+2 PLAC Cambo-les-Bains, France
+0 @I0002@ INDI
+1 NAME Franz /Schubert/
+2 GIVN Franz
+2 SURN Schubert
+1 BIRT
+2 DATE 31 JAN 1797
+2 PLAC Vienne, Archiduché d'Autriche
+1 DEAT
+2 DATE 19 NOV 1828
+2 PLAC Vienne, Empire d'Autriche
+0 TRLR
