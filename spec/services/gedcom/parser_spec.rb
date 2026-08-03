@@ -9,5 +9,15 @@ RSpec.describe Gedcom::Parser do
 
       expect(document.individuals.size).to eq(2)
     end
+
+    it "attaches child nodes to an individual record" do
+      document = described_class.parse(
+        fixture_file_path("minimal_composers.ged")
+      )
+
+      individual = document.individuals.first
+
+      expect(individual.child("NAME").value).to eq("Isaac /Albéniz/")
+    end
   end
 end
