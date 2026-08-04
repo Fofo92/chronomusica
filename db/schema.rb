@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_04_113928) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_04_115823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -43,6 +43,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_113928) do
     t.datetime "updated_at", null: false
     t.boolean "visible", default: true, null: false
     t.index ["preferred_name"], name: "index_places_on_preferred_name"
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.string "alternate_titles", default: [], array: true
+    t.datetime "created_at", null: false
+    t.string "preferred_title", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "visible", default: true
+    t.index ["preferred_title"], name: "index_works_on_preferred_title"
   end
 
   add_foreign_key "person_place_associations", "people"
