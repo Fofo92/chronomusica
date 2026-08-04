@@ -2,6 +2,9 @@ class Person < ApplicationRecord
   validates :preferred_given_name, presence: true
   validates :preferred_family_name, presence: true
 
+  has_many :person_place_associations, dependent: :destroy
+  has_many :places, through: :person_place_associations
+
   def preferred_name
     [
       preferred_given_name,

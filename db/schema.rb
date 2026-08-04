@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_04_100626) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_04_113928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,6 +25,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_100626) do
     t.boolean "visible"
   end
 
+  create_table "person_place_associations", force: :cascade do |t|
+    t.string "association_type", null: false
+    t.datetime "created_at", null: false
+    t.bigint "person_id", null: false
+    t.bigint "place_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id", "place_id", "association_type"], name: "index_person_place_associations_on_identity", unique: true
+    t.index ["person_id"], name: "index_person_place_associations_on_person_id"
+    t.index ["place_id"], name: "index_person_place_associations_on_place_id"
+  end
+
   create_table "places", force: :cascade do |t|
     t.string "alternate_names", default: [], array: true
     t.datetime "created_at", null: false
@@ -33,4 +44,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_100626) do
     t.boolean "visible", default: true, null: false
     t.index ["preferred_name"], name: "index_places_on_preferred_name"
   end
+
+  add_foreign_key "person_place_associations", "people"
+  add_foreign_key "person_place_associations", "places"
 end
