@@ -11,4 +11,15 @@ RSpec.describe Person, type: :model do
       expect(person.display_name).to eq("Isaac Albéniz")
     end
   end
+
+  describe "#preferred_name" do
+  it "returns the preferred identity of a person" do
+    person = described_class.new(
+      preferred_given_name: "Isaac",
+      preferred_family_name: "Albéniz"
+    )
+
+    expect(person.preferred_name).to eq("Isaac Albéniz")
+  end
+end
 end
