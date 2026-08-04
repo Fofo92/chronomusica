@@ -20,6 +20,16 @@ class Person < ApplicationRecord
           inverse_of: :child,
           dependent: :destroy
 
+  enum :birth_date_precision, {
+    exact: "exact",
+    approximate: "approximate"
+  }
+
+  enum :birth_date_basis, {
+    birth: "birth",
+    baptism: "baptism"
+  }
+
   def preferred_name
     [
       preferred_given_name,
@@ -29,5 +39,9 @@ class Person < ApplicationRecord
 
   def display_name
     preferred_name
+  end
+
+  def birth_date_known?
+    birth_date.present?
   end
 end

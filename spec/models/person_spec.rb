@@ -42,4 +42,12 @@ RSpec.describe Person, type: :model do
       expect(person.errors[:preferred_family_name]).to be_present
     end
   end
+
+  describe "#birth_date_known?" do
+  it "returns true when a birth date is recorded" do
+    person = described_class.new(birth_date: Date.new(1860, 5, 29))
+
+    expect(person.birth_date_known?).to be(true)
+  end
+end
 end

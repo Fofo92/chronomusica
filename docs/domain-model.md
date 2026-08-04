@@ -57,6 +57,8 @@ Un individu peut notamment être connu par :
 
 Un individu peut être conservé afin d’assurer la cohérence d’une filiation familiale sans nécessairement apparaître dans le catalogue public des artistes.
 
+Un individu peut posséder des dates vitales. Leur valeur peut être exacte ou approximative et reposer sur une naissance, un baptême, un décès ou une inhumation documentés.
+
 ## Work
 
 `Work` représente une œuvre possédant une identité propre.
