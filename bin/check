@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Chronomusica project checks"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+echo
+echo "▶ Git status"
+git status --short
+
+echo
+echo "▶ RSpec"
+bin/rspec
+
+echo
+echo "▶ RuboCop"
+bin/rubocop
+
+echo
+echo "▶ Zeitwerk"
+bin/rails zeitwerk:check
+
+echo
+echo "✅ All checks passed."
