@@ -3,24 +3,28 @@
 set -euo pipefail
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "Chronomusica project checks"
+echo "🎼 Chronomusica project checks"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo
+
+echo "🎼 Git status"
+if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+  git status --short
+else
+  echo "Working tree clean"
+fi
 
 echo
-echo "▶ Git status"
-git status --short
-
-echo
-echo "▶ RSpec"
+echo "🎼 RSpec"
 bin/rspec
 
 echo
-echo "▶ RuboCop"
+echo "🎼 RuboCop"
 bin/rubocop
 
 echo
-echo "▶ Zeitwerk"
+echo "🎼 Zeitwerk"
 bin/rails zeitwerk:check
 
 echo
-echo "✅ All checks passed."
+echo "🎵 Ready for the next increment."
