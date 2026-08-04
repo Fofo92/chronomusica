@@ -9,4 +9,13 @@ RSpec.describe Place, type: :model do
       expect(place.display_name).to eq("Venise")
     end
   end
+
+  describe "validations" do
+    it "requires a preferred name" do
+      place = described_class.new
+
+      expect(place).not_to be_valid
+      expect(place.errors[:preferred_name]).to be_present
+    end
+  end
 end
