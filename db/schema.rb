@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_04_115823) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_04_120337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,6 +45,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_115823) do
     t.index ["preferred_name"], name: "index_places_on_preferred_name"
   end
 
+  create_table "work_contributions", force: :cascade do |t|
+    t.string "contribution_role", null: false
+    t.datetime "created_at", null: false
+    t.bigint "person_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "work_id", null: false
+    t.index ["person_id", "work_id", "contribution_role"], name: "index_work_contributions_on_identity", unique: true
+    t.index ["person_id"], name: "index_work_contributions_on_person_id"
+    t.index ["work_id"], name: "index_work_contributions_on_work_id"
+  end
+
   create_table "works", force: :cascade do |t|
     t.string "alternate_titles", default: [], array: true
     t.datetime "created_at", null: false
@@ -56,4 +67,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_115823) do
 
   add_foreign_key "person_place_associations", "people"
   add_foreign_key "person_place_associations", "places"
+  add_foreign_key "work_contributions", "people"
+  add_foreign_key "work_contributions", "works"
 end

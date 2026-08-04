@@ -8,7 +8,8 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 RESET='\033[0m'
 
-overall_status="success"
+git_status="clean"
+technical_status="success"
 
 info() {
   printf "%b▶%b %s\n" "$BLUE" "$RESET" "$1"
@@ -20,15 +21,11 @@ success() {
 
 warning() {
   printf "%b!%b %s\n" "$YELLOW" "$RESET" "$1"
-
-  if [ "$overall_status" = "success" ]; then
-    overall_status="warning"
-  fi
 }
 
 error() {
   printf "%b✘%b %s\n" "$RED" "$RESET" "$1"
-  overall_status="error"
+  technical_status="error"
 }
 
 run_check() {
@@ -46,7 +43,7 @@ run_check() {
 }
 
 echo "══════════════════════════════════════"
-echo "Chronomusica :: Project checks"
+echo "Chronomusica : Project checks"
 echo "══════════════════════════════════════"
 
 echo
@@ -55,6 +52,7 @@ info "Git status"
 if ! git diff --quiet ||
    ! git diff --cached --quiet ||
    [ -n "$(git ls-files --others --exclude-standard)" ]; then
+  git_status="dirty"
   warning "Working tree is not clean"
   git status --short
 else
@@ -68,20 +66,32 @@ run_check "Zeitwerk" bin/rails zeitwerk:check
 echo
 echo "══════════════════════════════════════"
 
-case "$overall_status" in
-  success)
-    printf "🐷 %b✔%b Ready for the next increment.\n" \
-      "$GREEN" "$RESET"
-    ;;
-  warning)
-    printf "🐷 %b!%b Review the warnings before the next increment.\n" \
-      "$YELLOW" "$RESET"
-    ;;
-  error)
-    printf "🐷 %b✘%b Fix the errors before the next increment.\n" \
-      "$RED" "$RESET"
-    ;;
-esac
+if [ "$technical_status" = "error" ]; then
+
+  printf "🐷 %b✘%b Fix the errors before the next increment.\n" \
+    "$RED" "$RESET"
+  exit_code=1
+
+elif [ "$git_status" = "dirty" ]; then
+
+  printf "🐷 %b!%b Ready for the next increment —\n" \
+    "$YELLOW" "$RESET"
+  echo "     just commit and push your work."
+
+  exit_code=0
+
+else
+
+  printf "🐷 %b✔%b Ready for the next increment.\n" \
+    "$GREEN" "$RESET"
+
+  exit_code=0
+
+fi
+
+echo "══════════════════════════════════════"
+
+exit "$exit_code"
 
 echo "══════════════════════════════════════"
 
