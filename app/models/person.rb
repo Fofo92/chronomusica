@@ -8,6 +8,18 @@ class Person < ApplicationRecord
   has_many :work_contributions, dependent: :destroy
   has_many :works, through: :work_contributions
 
+  has_many :parent_child_relationships_as_parent,
+          class_name: "ParentChildRelationship",
+          foreign_key: :parent_id,
+          inverse_of: :parent,
+          dependent: :destroy
+
+  has_many :parent_child_relationships_as_child,
+          class_name: "ParentChildRelationship",
+          foreign_key: :child_id,
+          inverse_of: :child,
+          dependent: :destroy
+
   def preferred_name
     [
       preferred_given_name,

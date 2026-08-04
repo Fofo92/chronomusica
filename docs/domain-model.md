@@ -13,7 +13,7 @@ Cette première version se limite aux concepts actuellement stabilisés :
 * `Person` ;
 * `Work` ;
 * `Place` ;
-* `FamilyRelationship`.
+* `ParentChildRelationship`.
 
 Le modèle sera enrichi progressivement lorsque de nouveaux concepts auront été suffisamment compris et adoptés dans le glossaire.
 
@@ -24,19 +24,21 @@ Le modèle sera enrichi progressivement lorsque de nouveaux concepts auront ét�
                          │    Place    │
                          └──────▲──────┘
                                 │
-                       is associated with
+                        is associated with
                                 │
-               ┌────────────────┴────────────────┐
-               │                                 │
-        ┌──────┴──────┐                   ┌──────┴──────┐
-        │   Person    │──── contributes──►│    Work     │
-        └──────▲──────┘                   └─────────────┘
+                ┌────────────────┴────────────────┐
+                │                                 │
+        ┌───────┴──────┐                  ┌───────┴──────┐
+        │    Person    │─── contributes──►│     Work     │
+        └──────▲───────┘                  └──────────────┘
                │
-               │ connects
+          parent of
                │
-    ┌──────────┴───────────┐
-    │ FamilyRelationship   │
-    └──────────────────────┘
+               ▼
+        ┌──────────────┐
+        │    Person    │
+        └──────────────┘
+
 ```
 
 Ce diagramme présente les relations conceptuelles, sans préjuger de leur cardinalité précise ni de leur implémentation technique.
@@ -83,23 +85,38 @@ Un lieu peut connaître des évolutions historiques sans cesser de représenter 
 
 La représentation temporelle de ces évolutions n’est pas définie dans cette première version du modèle.
 
-## FamilyRelationship
+## ParentChildRelationship
 
-`FamilyRelationship` représente un lien familial entre exactement deux individus.
+̀ ParentChildRelationship` représente un lien de filiation direct entre deux individus.
 
-Une relation familiale peut notamment représenter :
+La relation est orientée :
 
-* une relation parent-enfant ;
-* une relation conjugale.
+* parent représente l'individu parent ;
 
-Les relations de fratrie ne sont pas enregistrées directement lorsqu’elles peuvent être déduites de parents communs.
+* child représente l'individu enfant.
 
-Une relation familiale reste indépendante d’une éventuelle relation artistique entre les mêmes individus.
+Elle constitue la base de représentation des filiations utiles à Chronomusica.
+
+Les relations de fratrie, de grand-parent, d'oncle, de tante ou de cousin ne sont pas enregistrées lorsqu'elles peuvent être déduites des relations parent-enfant connues.
+
+Les relations de couple ne font pas partie de ce concept. Elles pourront être représentées ultérieurement par un modèle distinct si un besoin métier concret le justifie.
+
+Un lien de filiation reste indépendant d’une éventuelle relation artistique entre les mêmes individus.
 
 Par exemple, Leopold Mozart peut être lié à Wolfgang Amadeus Mozart :
 
-* comme parent dans le modèle familial ;
+* comme parent ;
 * comme éducateur dans un futur modèle de relations artistiques.
+
+D’autres types de relations entre individus pourront être introduits ultérieurement lorsqu’un besoin métier concret le justifiera.
+
+### Invariants du modèle
+
+Un lien de filiation :
+
+* relie toujours deux individus distincts ;
+* est orienté du parent vers l'enfant ;
+* ne peut jamais relier un individu à lui-même.
 
 ## Core relationships
 
@@ -153,17 +170,16 @@ Une œuvre peut être associée à différents lieux selon la nature du fait con
 
 Le lieu et l’œuvre restent des entités indépendantes.
 
-### Person and FamilyRelationship
+### Person and ParentChildRelationship
 
 ```text
-Person ◄──── FamilyRelationship ────► Person
+Person ───── parent of ─────► Person
 ```
 
-Une relation familiale relie exactement deux individus.
-
-La signification et l’orientation de cette relation dépendent de sa nature. Une relation parent-enfant est orientée, tandis qu’une relation conjugale est symétrique.
-
-La future architecture pourra utiliser des représentations spécialisées si les besoins réels le justifient. Cette spécialisation n’est pas imposée par le modèle conceptuel actuel.
+* Un lien de filiation relie un parent à un enfant.
+* La relation est orientée.
+* Elle constitue le fait familial fondamental représenté par Chronomusica.
+* Les autres liens familiaux sont obtenus par déduction lorsqu'ils sont nécessaires.
 
 ## Facts and interpretations
 
@@ -174,7 +190,7 @@ Le modèle actuel représente principalement des faits historiques :
 * l’existence d’un lieu ;
 * une attribution ;
 * une association géographique ;
-* une relation familiale.
+* un lien de filiation.
 
 Chronomusica pourra ultérieurement proposer une couche d’interprétation permettant d’exprimer des jalons artistiques, des transformations historiques ou des filiations esthétiques.
 
