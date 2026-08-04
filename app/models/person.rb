@@ -1,4 +1,7 @@
 class Person < ApplicationRecord
+  validates :preferred_given_name, presence: true
+  validates :preferred_family_name, presence: true
+
   def preferred_name
     [
       preferred_given_name,

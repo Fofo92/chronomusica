@@ -13,13 +13,33 @@ RSpec.describe Person, type: :model do
   end
 
   describe "#preferred_name" do
-  it "returns the preferred identity of a person" do
-    person = described_class.new(
-      preferred_given_name: "Isaac",
-      preferred_family_name: "Albéniz"
-    )
+    it "returns the preferred identity of a person" do
+      person = described_class.new(
+        preferred_given_name: "Isaac",
+        preferred_family_name: "Albéniz"
+      )
 
-    expect(person.preferred_name).to eq("Isaac Albéniz")
+      expect(person.preferred_name).to eq("Isaac Albéniz")
+    end
   end
-end
+
+  describe "validations" do
+    it "requires a preferred given name" do
+      person = described_class.new(
+        preferred_family_name: "Albéniz"
+      )
+
+      expect(person).not_to be_valid
+      expect(person.errors[:preferred_given_name]).to be_present
+    end
+
+    it "requires a preferred family name" do
+      person = described_class.new(
+        preferred_given_name: "Isaac"
+      )
+
+      expect(person).not_to be_valid
+      expect(person.errors[:preferred_family_name]).to be_present
+    end
+  end
 end
