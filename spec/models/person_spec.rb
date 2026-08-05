@@ -44,10 +44,20 @@ RSpec.describe Person, type: :model do
   end
 
   describe "#birth_date_known?" do
-  it "returns true when a birth date is recorded" do
-    person = described_class.new(birth_date: Date.new(1860, 5, 29))
+    it "returns true when a birth date is recorded" do
+      person = described_class.new(birth_date: Date.new(1860, 5, 29))
 
-    expect(person.birth_date_known?).to be(true)
+      expect(person.birth_date_known?).to be(true)
+    end
+  end
+
+  describe "#death_date_known?" do
+  it "returns true when a death date is recorded" do
+    person = described_class.new(
+      death_date: Date.new(1909, 5, 18)
+    )
+
+    expect(person.death_date_known?).to be(true)
   end
 end
 end

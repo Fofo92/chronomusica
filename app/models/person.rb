@@ -30,6 +30,16 @@ class Person < ApplicationRecord
     baptism: "baptism"
   }
 
+  enum :death_date_precision, {
+    exact: "exact",
+    approximate: "approximate"
+  }, prefix: :death
+
+  enum :death_date_basis, {
+    death: "death",
+    burial: "burial"
+  }, prefix: :death
+
   def preferred_name
     [
       preferred_given_name,
@@ -43,5 +53,9 @@ class Person < ApplicationRecord
 
   def birth_date_known?
     birth_date.present?
+  end
+
+  def death_date_known?
+    death_date.present?
   end
 end
