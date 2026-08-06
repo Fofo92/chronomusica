@@ -52,12 +52,48 @@ RSpec.describe Person, type: :model do
   end
 
   describe "#death_date_known?" do
-  it "returns true when a death date is recorded" do
-    person = described_class.new(
-      death_date: Date.new(1909, 5, 18)
-    )
+    it "returns true when a death date is recorded" do
+      person = described_class.new(
+        death_date: Date.new(1909, 5, 18)
+      )
 
-    expect(person.death_date_known?).to be(true)
+      expect(person.death_date_known?).to be(true)
+    end
   end
-end
+
+  describe "#birth_place" do
+    it "returns the place associated with birth" do
+      person = described_class.new(
+        preferred_given_name: "Isaac",
+        preferred_family_name: "Albéniz"
+      )
+
+      place = Place.new(preferred_name: "Camprodon")
+
+      person.person_place_associations.build(
+        place: place,
+        association_type: :birth
+      )
+
+      expect(person.birth_place).to eq(place)
+    end
+  end
+
+  describe "#death_place" do
+    it "returns the place associated with death" do
+      person = described_class.new(
+        preferred_given_name: "Isaac",
+        preferred_family_name: "Albéniz"
+      )
+
+      place = Place.new(preferred_name: "Cambo-les-Bains")
+
+      person.person_place_associations.build(
+        place: place,
+        association_type: :death
+      )
+
+      expect(person.death_place).to eq(place)
+    end
+  end
 end

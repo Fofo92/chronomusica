@@ -58,4 +58,16 @@ class Person < ApplicationRecord
   def death_date_known?
     death_date.present?
   end
+
+  def birth_place
+    person_place_associations
+      .find { |association| association.birth? }
+      &.place
+  end
+
+  def death_place
+    person_place_associations
+      .find { |association| association.death? }
+      &.place
+  end
 end
