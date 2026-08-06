@@ -201,3 +201,9 @@ Leopold Mozart est le père de Wolfgang Amadeus Mozart.
 Alessandro Marcello et Benedetto Marcello sont frères parce qu’ils possèdent au moins un parent commun identifié.
 
 Leopold Mozart peut être lié à Wolfgang Mozart à la fois par une relation familiale et par une relation artistique d’enseignement.
+
+### Artistic role
+
+Un rôle artistique décrit une activité musicale ou culturelle exercée par un acteur pertinent pour l'objet de Chronomusica.
+
+Un même acteur peut exercer plusieurs rôles simultanément ou successivement au cours de son existence.
