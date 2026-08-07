@@ -202,7 +202,7 @@ Alessandro Marcello et Benedetto Marcello sont frères parce qu’ils possèdent
 
 Leopold Mozart peut être lié à Wolfgang Mozart à la fois par une relation familiale et par une relation artistique d’enseignement.
 
-## Artistic role
+## ArtistRole
 
 Un rôle artistique décrit une activité musicale ou culturelle exercée par un acteur pertinent pour l'objet de **Chronomusica**.
 

@@ -120,6 +120,17 @@ Un lien de filiation :
 * est orienté du parent vers l'enfant ;
 * ne peut jamais relier un individu à lui-même.
 
+## ArtistRole
+
+`ArtistRole` représente un rôle artistique partagé par plusieurs acteurs de **Chronomusica**.
+
+Un rôle artistique possède au minimum :
+
+* un nom ;
+* une description.
+
+
+Les rôles artistiques restent indépendants des contributions apportées à une œuvre particulière.
 ## Core relationships
 
 ### Person and Work
@@ -182,6 +193,12 @@ Person ───── parent of ─────► Person
 * La relation est orientée.
 * Elle constitue le fait familial fondamental représenté par Chronomusica.
 * Les autres liens familiaux sont obtenus par déduction lorsqu'ils sont nécessaires.
+
+### Person and ArtistRole
+
+```text
+Person ───── exercises ─────► ArtistRole
+```
 
 ## Facts and interpretations
 
