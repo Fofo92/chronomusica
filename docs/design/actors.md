@@ -22,3 +22,4 @@ Faut-il introduire un concept d'Actor ou conserver uniquement Person ?
 Le modèle reste centré sur Person.
 
 La possibilité d'introduire ultérieurement un concept plus général est conservée ouverte.
+

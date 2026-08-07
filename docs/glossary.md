@@ -202,8 +202,14 @@ Alessandro Marcello et Benedetto Marcello sont frères parce qu’ils possèdent
 
 Leopold Mozart peut être lié à Wolfgang Mozart à la fois par une relation familiale et par une relation artistique d’enseignement.
 
-### Artistic role
+## Artistic role
 
-Un rôle artistique décrit une activité musicale ou culturelle exercée par un acteur pertinent pour l'objet de Chronomusica.
+Un rôle artistique décrit une activité musicale ou culturelle exercée par un acteur pertinent pour l'objet de **Chronomusica**.
 
 Un même acteur peut exercer plusieurs rôles simultanément ou successivement au cours de son existence.
+
+Les rôles artistiques servent à qualifier les activités générales d'un acteur. Ils sont indépendants des contributions apportées à une œuvre particulière.
+
+Par exemple, Wolfgang Amadeus Mozart exerce notamment les rôles de compositeur, pianiste et chef d'orchestre.
+
+En revanche, lorsqu'il est associé à une œuvre donnée, son intervention est représentée par une contribution (`WorkContribution`) décrivant le rôle qu'il joue relativement à cette œuvre.
