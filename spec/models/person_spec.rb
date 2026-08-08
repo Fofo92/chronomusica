@@ -96,4 +96,21 @@ RSpec.describe Person, type: :model do
       expect(person.death_place).to eq(place)
     end
   end
+
+  describe "artist roles" do
+    it "can exercise several artist roles" do
+      person = described_class.new(
+        preferred_given_name: "Johann Sebastian",
+        preferred_family_name: "Bach"
+      )
+
+      composer = ArtistRole.new(name: "composer")
+      performer = ArtistRole.new(name: "performer")
+
+      person.artist_roles << composer
+      person.artist_roles << performer
+
+      expect(person.artist_roles).to contain_exactly(composer, performer)
+    end
+  end
 end

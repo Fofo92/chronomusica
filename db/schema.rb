@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_07_230309) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_07_234034) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,6 +49,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_07_230309) do
     t.boolean "visible"
     t.index ["birth_date"], name: "index_people_on_birth_date"
     t.index ["death_date"], name: "index_people_on_death_date"
+  end
+
+  create_table "person_artist_roles", force: :cascade do |t|
+    t.bigint "artist_role_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "person_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_role_id"], name: "index_person_artist_roles_on_artist_role_id"
+    t.index ["person_id", "artist_role_id"], name: "index_person_artist_roles_on_person_id_and_artist_role_id", unique: true
+    t.index ["person_id"], name: "index_person_artist_roles_on_person_id"
   end
 
   create_table "person_place_associations", force: :cascade do |t|
@@ -93,6 +103,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_07_230309) do
 
   add_foreign_key "parent_child_relationships", "people", column: "child_id"
   add_foreign_key "parent_child_relationships", "people", column: "parent_id"
+  add_foreign_key "person_artist_roles", "artist_roles"
+  add_foreign_key "person_artist_roles", "people"
   add_foreign_key "person_place_associations", "people"
   add_foreign_key "person_place_associations", "places"
   add_foreign_key "work_contributions", "people"

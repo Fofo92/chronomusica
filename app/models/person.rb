@@ -20,6 +20,9 @@ class Person < ApplicationRecord
           inverse_of: :child,
           dependent: :destroy
 
+  has_many :person_artist_roles
+  has_many :artist_roles, through: :person_artist_roles
+
   enum :birth_date_precision, {
     exact: "exact",
     approximate: "approximate"
