@@ -66,6 +66,8 @@ Une œuvre représente une création artistique identifiée par Chronomusica.
 
 Elle constitue l'expression d'une ou plusieurs démarches créatrices et possède une identité propre, indépendante de ses auteurs, de ses interprétations ou de ses éditions.
 
+Une Work représente l'unité artistique pertinente pour le récit considéré ; elle peut éventuellement faire partie d'une œuvre plus vaste ou contenir des œuvres plus fines, sans que cette décomposition soit obligatoire.
+
 ### Pourquoi ce concept existe-t-il ?
 
 L'œuvre est l'un des éléments fondamentaux de l'histoire de la musique. À ce titre,
